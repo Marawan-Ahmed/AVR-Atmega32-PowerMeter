@@ -1,14 +1,15 @@
 #include "../../LIB/BIT_Math.h"
 #include "../../LIB/STD_Types.h"
 #include "../../MCAL/ADC/ADC.h"
-#include "ACS712.h"
+#include "VSEN.h"
 
-void ACS712_voidInit(void)
+
+void VSEN_voidInit(void)
 {
 	
 }
 
-u16 ACS712_u16GetCurrentReading(void)
+u16  VSEN_u16GetVoltageReading(void)
 {
 	/**Get Sensor Reading*/
 	
@@ -16,9 +17,9 @@ u16 ACS712_u16GetCurrentReading(void)
 	/**Convert it from V to mV*/
 	
 	
-	/**Convert it from mV to mA*/
-	// I = (V - 2.5) / sensitivity;
+	/**Calculate Vin in mV*/
+	// Vin = Vout * ((R1 + R2) / (R2))
 	
 	
-	/**Return in mA*/
+	/**Return Vin in mV*/
 }
