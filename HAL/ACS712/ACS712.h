@@ -1,6 +1,6 @@
 #pragma once
-#ifndef ASC712_H_
-#define ASC712_H_
+#ifndef ACS712_H_
+#define ACS712_H_
 
 /******************************CONFIG*******************************/
 
@@ -10,7 +10,6 @@
 /****************************INTERFACE******************************/
 
 void ACS712_voidInit(void);
-u16 ACS712_u16GetCurrentReadingDC(void);
-u16 ACS712_u16GetCurrentReadingAC(void);
+u16 ACS712_u16GetCurrentReading(void);
 
 #endif

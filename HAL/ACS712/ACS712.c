@@ -8,12 +8,16 @@ void ACS712_voidInit(void)
 	ADC_voidInit(ASC712_ADC_CHANNEL);
 }
 
-u16 ACS712_u16GetCurrentReadingDC(void)
+u16 ACS712_u16GetCurrentReading(void)
 {
+	/**Get Sensor Reading*/
 	
-}
-
-u16 ACS712_u16GetCurrentReadingAC(void)
-{
 	
+	/**Convert it from V to mV*/
+	
+	
+	/**Convert it from mV to mA*/
+	
+	
+	/**Return in mA*/
 }
