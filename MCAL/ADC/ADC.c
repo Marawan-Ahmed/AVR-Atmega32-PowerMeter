@@ -87,7 +87,7 @@ u16  ADC_u8GetDigital		(u8 Copy_u8Channel)
 	ADMUX &= 0b11100000;
 	ADMUX |= Copy_u8Channel;
 	/*	Start Conversion	*/
-	if( AUTOTRIGGED_OFF == ADC_TRIGGER){
+	if(AUTOTRIGGED_OFF == ADC_TRIGGER){
 			// Start Conversion
 			SET_BIT(ADCSRA,ADSC);
 	   }

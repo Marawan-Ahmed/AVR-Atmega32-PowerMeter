@@ -1,0 +1,33 @@
+1. voltage sensor => voltage divider => On ADC
+2. current sensor => some current sensor on proteus (ACS712) => On ADC
+3. LCD to display reading
+4. Menu switches  => to display voltage/current/power/energy readings 
+						(either display them on the screen together or switch with a button)
+				  => Reset button
+				  => Inst/RMS View
+				  => # just a suggestion:
+						write reading log on E2PROM or sth
+				  
+5. for energy calculations => use timer to calculate it in Wh
+
+----------------------------------------------------------------
+To Do:
+1. HAL voltage sensor => outputs ready-to-use Voltage reading
+2. HAL current sensor => outputs ready-to-use Current reading
+3. Adjusting LCD HAL to print/manage 4 inputs (voltage/current/power/energy)
+4. Configure buttons on EXTI pins (Switch reading---debatable--- && Reset && Inst/RMS)
+5. API for energy calculations => (using timer)
+6. API for power calculations  => (use V and I reading to calculate power)
+7. Test!
+
+EXTRA:
+	Operate LCD using I2C
+	
+----------------------------------------------------------------
+Voltage/Current Sensor HAL Driver (Osama=>.c) (Ahmed=>.h)
+
+Display Interface (LCD + Buttons) => LCD Driver adjustment + EXTI menu buttons (Mostafa)
+Calculations (Power && Energy) => Timer for calculating energy (Marawan)
+System/Interface Design (Project Blueprint) (Marawan/Ahmed)
+
+main file (App)
