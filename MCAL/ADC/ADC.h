@@ -59,6 +59,8 @@
 #define ADC_DIV_64				6
 #define ADC_DIV_128				7
 
+#define ADC_PRESCALER_MASK 		0xF8
+
 // Reference Voltage Selection
 #define	ADC_AVCC				0				// Internal Vref is turned off
 #define	ADC_AREF				1				// Use External Capacitor at AREF
@@ -103,9 +105,25 @@
 /* ADC_AVCC		ADC_AREF	ADC_2.56_V	*/
 
 /* 			APIs		*/
-void ADC_voidInit			(u8 Copy_u8Prescaler);
-u16  ADC_u8GetDigital	    (u8 Copy_u8Channel);
-void ADC_voidDisable		(void);
+void ADC_voidInit					(u8 Copy_u8Prescaler);
+u16  ADC_u8GetDigital	    		(u8 Copy_u8Channel);
+void ADC_voidDisable				(void);
+
+/* 
+	Ahmed added these
+*/
+void ADC_voidSetPrescaler			(u8 copy_u8Prescaler);
+
+void ADC_voidEnableAutoTrigger		(void);
+void ADC_voidDisableAutoTrigger		(void);
+void ADC_voidSetAutoTriggerSource	(u8 copy_u8AutoTriggerSource);
+
+void ADC_voidEnable					(void);
+
+void ADC_voidEnableADCInterrupt		(void);
+void ADC_voidDisableADCInterrupt	(void);
+void ADC_voidClearADCInterruptFlag	(void);
+
 
 
 
