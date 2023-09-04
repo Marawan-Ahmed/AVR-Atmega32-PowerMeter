@@ -13,6 +13,7 @@
 
 /************************** Registers ************************************/
 
+
 #define ADMUX					(*(volatile u8*)(0x07 + 0x20))
 #define REFS1					7
 #define REFS0					6
@@ -33,14 +34,26 @@
 #define ADPS1					1
 #define ADPS0					0
 
-#define ADC						(*(volatile u16*)(0x04 + 0x20))
 
-#define SFIOR					(*(volatile u8*)(0x30 + 0x20))
+#ifndef SFIOR
+	#define SFIOR 				(*(volatile u8*)0x50)
+#endif
 #define ADTS2					7
 #define ADTS1					6
 #define ADTS0					5
 
+#define ADCL 					(*(volatile u8 *) 0x24)
+#define ADCH 					(*(volatile u8 *) 0x25)
+
 /************************** Macros *********************************/
+
+/* ADC Timeout Limit */
+#define ADC_TIME_OUT_LIMIT			69000UL
+/* Prescaler Mask */
+#define ADC_ADCSRA_PRESCALER_MASK 	0xF8
+/* channel selection mask (& with ADMUX then set MUX bits separately using |) */
+#define ADC_ADMUX_CHANNEL_MASK 		0b11100000
+
 
 #define ADC_CHANNAL_0			0
 #define ADC_CHANNAL_1			1
@@ -104,25 +117,25 @@
 // Data Register is ADC Register
 /* ADC_AVCC		ADC_AREF	ADC_2.56_V	*/
 
-/* 			APIs		*/
+/* 			APIs (Ahmed Added/Modified these)		*/
 void ADC_voidInit					(u8 Copy_u8Prescaler);
-u16  ADC_u8GetDigital	    		(u8 Copy_u8Channel);
-void ADC_voidDisable				(void);
 
-/* 
-	Ahmed added these
-*/
-void ADC_voidSetPrescaler			(u8 copy_u8Prescaler);
+u16 ADC_u16GetResultSync(u8 copy_u8Channel);
 
-void ADC_voidEnableAutoTrigger		(void);
-void ADC_voidDisableAutoTrigger		(void);
-void ADC_voidSetAutoTriggerSource	(u8 copy_u8AutoTriggerSource);
+void ADC_voidSetPrescaler(u8 copy_u8Prescaler);
 
-void ADC_voidEnable					(void);
+void ADC_voidEnableAutoTrigger(void);
+void ADC_voidDisableAutoTrigger(void);
+void ADC_voidSetAutoTriggerSource(u8 copy_u8AutoTriggerSource);
 
-void ADC_voidEnableADCInterrupt		(void);
-void ADC_voidDisableADCInterrupt	(void);
-void ADC_voidClearADCInterruptFlag	(void);
+void ADC_voidStartConversion(void);
+
+void ADC_voidEnable(void);
+void ADC_voidDisable(void);
+
+void ADC_voidEnableADCInterrupt	(void);
+void ADC_voidDisableADCInterrupt(void);
+void ADC_voidClearADCInterruptFlag(void);
 
 
 

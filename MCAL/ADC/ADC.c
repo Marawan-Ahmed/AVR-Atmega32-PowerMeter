@@ -7,99 +7,147 @@
 
 #include "ADC.h"
 
-void ADC_voidInit	(u8 Copy_u8Prescaler)
+void ADC_voidInit(u8 copy_u8Prescaler)
 {
 
 	/*	Select Voltage Reference								*/
 
-	#if		ADC_REF_VOLT == ADC_AVCC
-		SET_BIT(ADMUX,REFS0);
-		CLR_BIT(ADMUX,REFS1);
-	#elif	ADC_REF_VOLT == ADC_AREF
-		CLR_BIT(ADMUX,REFS0);
-		CLR_BIT(ADMUX,REFS1);
-	#elif	ADC_REF_VOLT == ADC_2.56_V
-		SET_BIT(ADMUX,REFS0);
-		SET_BIT(ADMUX,REFS1);
+	#if	(ADC_REF_VOLT == ADC_AVCC)
+		
+		SET_BIT(ADMUX, REFS0);
+		CLR_BIT(ADMUX, REFS1);
+	
+	#elif (ADC_REF_VOLT == ADC_AREF)
+		
+		CLR_BIT(ADMUX, REFS0);
+		CLR_BIT(ADMUX, REFS1);
+	
+	#elif (ADC_REF_VOLT == ADC_2.56_V)
+		
+		SET_BIT(ADMUX, REFS0);
+		SET_BIT(ADMUX, REFS1);
+	
 	#endif
 
 	/* Select Adjustment 										*/
-		#if ADC_ADJUST == ADC_RIGHT_ADJUST
-			CLR_BIT(ADMUX,ADLAR);
-		#elif ADC_ADJUST == ADC_LEFT_ADJUST
-			SET_BIT(ADMUX,ADLAR);
-		#endif
+	#if (ADC_ADJUST == ADC_RIGHT_ADJUST)
+		
+		CLR_BIT(ADMUX, ADLAR);
+		
+	#elif (ADC_ADJUST == ADC_LEFT_ADJUST)
+		
+		SET_BIT(ADMUX, ADLAR);
+		
+	#endif
 
 	/**/
 	// Enable Triggering MODE
-	#if ADC_TRIGGER == AUTOTRIGGED_OFF
-		CLR_BIT(ADCSRA,ADATE);
+	#if (ADC_TRIGGER == AUTOTRIGGED_OFF)
+	
+		CLR_BIT(ADCSRA, ADATE);
+		
 	#else
-		SET_BIT(ADCSRA,ADATE);
+		SET_BIT(ADCSRA, ADATE);
 		// Select Triggering Source
-		#if TRIGGER_SOURCE == FREE_RUNNING
-			CLR_BIT(SFIOR,ADTS0);
-			CLR_BIT(SFIOR,ADTS1);
-			CLR_BIT(SFIOR,ADTS2);
-		#elif TRIGGER_SOURCE == ANALOG_COMPARATOR
-		    SET_BIT(SFIOR,ADTS0);
-			CLR_BIT(SFIOR,ADTS1);
-			CLR_BIT(SFIOR,ADTS2);
-		#elif TRIGGER_SOURCE == EXT_INT_0
-			CLR_BIT(SFIOR,ADTS0);
-			SET_BIT(SFIOR,ADTS1);
-			CLR_BIT(SFIOR,ADTS2);
-		#elif TRIGGER_SOURCE == TIMER0_COMP_MATCH
-			SET_BIT(SFIOR,ADTS0);
-			SET_BIT(SFIOR,ADTS1);
-			CLR_BIT(SFIOR,ADTS2);
-		#elif TRIGGER_SOURCE == TIMER0_OVF
-			CLR_BIT(SFIOR,ADTS0);
-			CLR_BIT(SFIOR,ADTS1);
-			SET_BIT(SFIOR,ADTS2);
-		#elif TRIGGER_SOURCE == TIMER_COMP_MATCH
-			SET_BIT(SFIOR,ADTS0);
-			CLR_BIT(SFIOR,ADTS1);
-			SET_BIT(SFIOR,ADTS2);
-		#elif TRIGGER_SOURCE == TIMER1_OVF
-			CLR_BIT(SFIOR,ADTS0);
-			SET_BIT(SFIOR,ADTS1);
-			SET_BIT(SFIOR,ADTS2);
-		#elif TRIGGER_SOURCE == TIMER1_CAP_EVENT
-			SET_BIT(SFIOR,ADTS0);
-			SET_BIT(SFIOR,ADTS1);
-			SET_BIT(SFIOR,ADTS2);
+		#if (TRIGGER_SOURCE == FREE_RUNNING)
+		
+			CLR_BIT(SFIOR, ADTS0);
+			CLR_BIT(SFIOR, ADTS1);
+			CLR_BIT(SFIOR, ADTS2);
+			
+		#elif (TRIGGER_SOURCE == ANALOG_COMPARATOR)
+		
+		    SET_BIT(SFIOR, ADTS0);
+			CLR_BIT(SFIOR, ADTS1);
+			CLR_BIT(SFIOR, ADTS2);
+			
+		#elif (TRIGGER_SOURCE == EXT_INT_0)
+		
+			CLR_BIT(SFIOR, ADTS0);
+			SET_BIT(SFIOR, ADTS1);
+			CLR_BIT(SFIOR, ADTS2);
+			
+		#elif (TRIGGER_SOURCE == TIMER0_COMP_MATCH)
+		
+			SET_BIT(SFIOR, ADTS0);
+			SET_BIT(SFIOR, ADTS1);
+			CLR_BIT(SFIOR, ADTS2);
+			
+		#elif (TRIGGER_SOURCE == TIMER0_OVF)
+		
+			CLR_BIT(SFIOR, ADTS0);
+			CLR_BIT(SFIOR, ADTS1);
+			SET_BIT(SFIOR, ADTS2);
+			
+		#elif (TRIGGER_SOURCE == TIMER_COMP_MATCH)
+		
+			SET_BIT(SFIOR, ADTS0);
+			CLR_BIT(SFIOR, ADTS1);
+			SET_BIT(SFIOR, ADTS2);
+			
+		#elif (TRIGGER_SOURCE == TIMER1_OVF)
+		
+			CLR_BIT(SFIOR, ADTS0);
+			SET_BIT(SFIOR, ADTS1);
+			SET_BIT(SFIOR, ADTS2);
+			
+		#elif (TRIGGER_SOURCE == TIMER1_CAP_EVENT)
+		
+			SET_BIT(SFIOR, ADTS0);
+			SET_BIT(SFIOR, ADTS1);
+			SET_BIT(SFIOR, ADTS2);
+			
 		#endif
+		
 	#endif
 
-	/*	Select Conversion Speed									*/
-		ADCSRA &= 0b11111000;
-		ADCSRA |= Copy_u8Prescaler;
-
-	/*	Turn on ADC Module	(Turn off after use to save power)	*/
-	SET_BIT(ADCSRA,ADEN);
-
+	// enable ADC (must be at the end)	
+	SET_BIT(ADCSRA, ADEN);
 }
-u16  ADC_u8GetDigital		(u8 Copy_u8Channel)
+
+u16 ADC_u16GetResultSync(u8 copy_u8Channel)
 {
-	u16 data = 0;
-	/* Select Channel 	*/
-	ADMUX &= 0b11100000;
-	ADMUX |= Copy_u8Channel;
-	/*	Start Conversion	*/
-	if(AUTOTRIGGED_OFF == ADC_TRIGGER){
-			// Start Conversion
-			SET_BIT(ADCSRA,ADSC);
-	   }
+	// TO DO: verify channel && ptr passed
+	
+	u16 copy_u16Result = 0;
+	// select channel
+	ADMUX &= ADC_ADMUX_CHANNEL_MASK;
+	ADMUX |= copy_u8Channel;
+	
+	// start conversion
+	ADC_voidStartConversion();
+	
+	// polling until conversion is done OR ADC times out
+	u32 local_u32TimeOutCounter = 0;
+	
+	while ((GET_BIT(ADCSRA, ADIF) == 0) && (local_u32TimeOutCounter < ADC_TIME_OUT_LIMIT))
+		local_u32TimeOutCounter++;
+	
+	// return error code if ADC timed out
+	if (local_u32TimeOutCounter == ADC_TIME_OUT_LIMIT)
+		return 0; // will edit this later
+	
+	//_delay_ms(10);
+	
+	// clear interrupt flag
+	ADC_voidClearADCInterruptFlag();
+	
+	#if (ADC_ADJUST == ADC_RIGHT_ADJUST)
+		
+		copy_u16Result = ((u16)ADCL | (u16)(ADCH << 8));
 
-	/* Wait for Conversion */
-	while(GET_BIT(ADCSRA,ADIF) == 0);
-	SET_BIT(ADCSRA,ADIF);
+	#elif (ADC_ADJUST == ADC_LEFT_ADJUST)
+		
+		copy_u16Result = ADCH;
+		
+	#endif
+	
+	return copy_u16Result;
+}
 
-	/* Load the Word */
-	data = ADC;
-
-	return data;
+void ADC_voidStartConversion(void)
+{
+	SET_BIT(ADCSRA, ADC_ADCSRA_ADSC);
 }
 
 void ADC_voidDisable(void)
