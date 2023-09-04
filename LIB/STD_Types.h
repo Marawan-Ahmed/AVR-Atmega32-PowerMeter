@@ -20,6 +20,18 @@ typedef void (*ptrFunc_Iv_Ov) (void);
 
 
 #define NULL	((volatile void*) 0LL)
+
+typedef enum
+
+{
+	true = 1,
+	false = 0
+} bool;
+
+#ifndef F_CPU
+	#define F_CPU 8000000UL
+#endif
+
 #endif
 
 
