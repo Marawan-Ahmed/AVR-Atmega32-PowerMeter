@@ -1,11 +1,13 @@
-#include "../../LIB/BIT_Math.h"
-#include "../../LIB/STD_Types.h"
-#include "../../MCAL/TIM0/TIM0.h"
+#include "../LIB/BIT_Math.h"
+#include "../LIB/STD_Types.h"
+#include "../MCAL/TIM0/TIM0.h"
 
-#include "../../HAL/VSEN/VSEN.h"
-#include "../../HAL/ACS712/ACS712.h"
+#include "../HAL/VSEN/VSEN.h"
+#include "../HAL/ACS712/ACS712.h"
 
 #include <math.h>
+#include <avr/interrupt.h>
+
 #include "calculations.h"
 
 
@@ -32,7 +34,7 @@ void CALC_voidInit(void){
 	
 	//setup the timer enterupt to run every multiple of 1mS
 	TIM0_voidInit();
-	TIM0_voidSetPreValue(???);
+	TIM0_voidSetPreValue(232); ////////////////////?????????????????????????????????
 	TIM0_voidTimerStart(TIM0_PRE_DIV_8);
 
 	sei();
@@ -43,7 +45,7 @@ void CALC_voidInit(void){
 void CALC_voidPeriodicFunc(void){
 	static u16 Local_u16Count =0;
 	//enter this condition every SMAPLING_PERIOD_mS 
-	if(Local_u16Count == ???){
+	if(Local_u16Count == 3){ ////////////////////?????????????????????????????????
 		//read inst volt
 		Global_f64InstVoltage_mv = VSEN_u16GetVoltageReading();
 		//read inst current
@@ -75,13 +77,23 @@ void CALC_voidReset(void){
 }
 
 
-f64 CALC_f64GetRMSVoltage_mV(void)	return Global_f64RMSVoltage_mv;
+f64 CALC_f64GetRMSVoltage_mV(void)	{
+	return Global_f64RMSVoltage_mv;
+}
 
-f64 CALC_f64GetRMSCurrent_mA(void)return Global_f64RMSCurrent_mA;
+f64 CALC_f64GetRMSCurrent_mA(void){
+	return Global_f64RMSCurrent_mA;
+}
 
-f64 CALC_f64GetInstPower_mW(void)return Global_f64InstPower_mW;
+f64 CALC_f64GetInstPower_mW(void){
+	return Global_f64InstPower_mW;
+}
 
-f64 CALC_f64GetRMSPower_mW(void)return Global_f64RMSPower_mA;
+f64 CALC_f64GetRMSPower_mW(void){
+	return Global_f64RMSPower_mA;
+}
 
-f64 CALC_f64GetEnergy_mJ(void)return Global_f64Energy_mJ;
+f64 CALC_f64GetEnergy_mJ(void){
+	return Global_f64Energy_mJ;
+}
 

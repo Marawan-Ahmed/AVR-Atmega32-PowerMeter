@@ -1,8 +1,9 @@
-ifndef CALC_H
+#ifndef CALC_H
 #define CALC_H
+#include "../LIB/STD_Types.h"
 
-#define SMAPLING_PERIOD_mS 1
-#define SMAPLING_COUNT 1000
+#define SMAPLING_PERIOD_mS 	1
+#define SMAPLING_COUNT 		1000
 
 
 
