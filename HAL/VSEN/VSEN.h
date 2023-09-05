@@ -15,8 +15,8 @@
 		R2 = 7.5kohm
 */
 
-#define VSEN_R1		30000
-#define VSEN_R2		 7500
+#define VSEN_R1		30000UL
+#define VSEN_R2		 7500UL
 
 /****************************INTERFACE******************************/
 
