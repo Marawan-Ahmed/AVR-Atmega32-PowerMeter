@@ -11,7 +11,8 @@
 
 #include "../LIB/BIT_Math.h"
 #include "../LIB/STD_Types.h"
-#include "../MCAL/TIM0/TIM0.c"
+//#include "../MCAL/TIM0/TIM0.c"
+#include "../MCAL/TIMER/TIMER_Prog.c"
 #include "../MCAL/ADC/ADC_Prog.c"
 #include "../MCAL/DIO/DIO_Prog.c"
 
@@ -32,14 +33,16 @@ int main(void)
 	
 	LCD_voidInitDisplay();
 
-	f32 local_u32Current = ACS712_f32GetCurrentReading();
-	f32 local_f32Voltage = VSEN_f32GetVoltageReading();
+	f32 local_u32Current;// = ACS712_f32GetCurrentReading();
+	f32 local_f32Voltage; //= VSEN_f32GetVoltageReading();
+	f32 local_f32Power;
+	f32 local_f32Energy;
 	f64 local_f64Temp = 3.3;
-
+	// CALC_f64GetInstCurrent_mA CALC_f64GetInstVoltage_mV CALC_f64GetInstPower_mW CALC_f64GetEnergy_mJ
     while(true)
     {
-        local_f32Voltage = (u32)CALC_f64GetRMSVoltage_mV(); 
-		LCD_voidDisplayInt(local_f32Voltage);
+        local_f32Power = (u32)CALC_f64GetEnergy_mJ(); 
+		LCD_voidDisplayInt(local_f32Power);
 		_delay_ms(10);
 		LCD_voidClrDisplay();
     }

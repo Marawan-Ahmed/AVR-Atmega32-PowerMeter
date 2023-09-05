@@ -13,9 +13,11 @@ main.d main.o: .././main.c \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\fuse.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\interrupt.h \
- .././../LIB/BIT_Math.h .././../LIB/STD_Types.h .././../MCAL/TIM0/TIM0.c \
- .././../MCAL/TIM0/../../LIB/STD_Types.h \
- .././../MCAL/TIM0/../../LIB/BIT_Math.h .././../MCAL/TIM0/TIM0.h \
+ .././../LIB/BIT_Math.h .././../LIB/STD_Types.h \
+ .././../MCAL/TIMER/TIMER_Prog.c .././../MCAL/TIMER/../../LIB/STD_Types.h \
+ .././../MCAL/TIMER/../../LIB/Bit_Math.h \
+ .././../MCAL/TIMER/TIMER_Register.h .././../MCAL/TIMER/TIMER_Private.h \
+ .././../MCAL/TIMER/TIMER_CFG.h .././../MCAL/TIMER/TIMER_Interface.h \
  .././../MCAL/ADC/ADC_Prog.c .././../MCAL/ADC/../../LIB/STD_Types.h \
  .././../MCAL/ADC/../../LIB/Bit_Math.h .././../MCAL/ADC/ADC_Register.h \
  .././../MCAL/ADC/ADC_Private.h .././../MCAL/ADC/ADC_CFG.h \
@@ -74,13 +76,19 @@ c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\interrupt.h:
 
 .././../LIB/STD_Types.h:
 
-.././../MCAL/TIM0/TIM0.c:
+.././../MCAL/TIMER/TIMER_Prog.c:
 
-.././../MCAL/TIM0/../../LIB/STD_Types.h:
+.././../MCAL/TIMER/../../LIB/STD_Types.h:
 
-.././../MCAL/TIM0/../../LIB/BIT_Math.h:
+.././../MCAL/TIMER/../../LIB/Bit_Math.h:
 
-.././../MCAL/TIM0/TIM0.h:
+.././../MCAL/TIMER/TIMER_Register.h:
+
+.././../MCAL/TIMER/TIMER_Private.h:
+
+.././../MCAL/TIMER/TIMER_CFG.h:
+
+.././../MCAL/TIMER/TIMER_Interface.h:
 
 .././../MCAL/ADC/ADC_Prog.c:
 
