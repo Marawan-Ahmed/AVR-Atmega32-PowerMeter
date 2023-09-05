@@ -4,8 +4,8 @@
 
 /******************************CONFIG*******************************/
 
-#define ACS712_ADC_CHANNEL		ADC_CHANNAL_0
-#define ACS712_ADC_PRESCALER	ADC_DIV_64
+#define ACS712_ADC_CHANNEL		ADC_CHANNEL_0
+//#define ACS712_ADC_PRESCALER	ADC_DIV_64
 
 /*
 	ACS712 Current Sensor comes in three editions:

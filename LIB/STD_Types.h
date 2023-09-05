@@ -32,6 +32,8 @@ typedef enum
 	#define F_CPU 8000000UL
 #endif
 
+typedef void (*ptrFunc)(void);
+
 #endif
 
 

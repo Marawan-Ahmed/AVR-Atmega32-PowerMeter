@@ -1,12 +1,11 @@
 #include "../../LIB/BIT_Math.h"
 #include "../../LIB/STD_Types.h"
-#include "../../MCAL/ADC/ADC.h"
 #include "VSEN.h"
 
 
 void VSEN_voidInit(void)
 {
-	ADC_voidInit(VSEN_ADC_PRESCALER);
+	ADC_voidInit();
 }
 
 f32  VSEN_f32GetVoltageReading(void)

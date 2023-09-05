@@ -4,8 +4,8 @@
 
 /******************************CONFIG*******************************/
 
-#define VSEN_ADC_CHANNEL		ADC_CHANNAL_1
-#define VSEN_ADC_PRESCALER		ADC_DIV_64
+#define VSEN_ADC_CHANNEL		ADC_CHANNEL_0
+//#define VSEN_ADC_PRESCALER		ADC_DIV_64
 
 /*
 	Voltage Sensing using voltage divider:

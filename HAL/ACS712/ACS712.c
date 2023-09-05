@@ -1,11 +1,10 @@
 #include "../../LIB/BIT_Math.h"
 #include "../../LIB/STD_Types.h"
-#include "../../MCAL/ADC/ADC.h"
 #include "ACS712.h"
 
 void ACS712_voidInit(void)
 {
-	ADC_voidInit(ACS712_ADC_PRESCALER);
+	ADC_voidInit();
 }
 
 f32 ACS712_f32GetCurrentReading(void)

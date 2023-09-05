@@ -1,5 +1,6 @@
-#ifndef CALC_H
-#define CALC_H
+#pragma once
+#ifndef CALC_H_
+#define CALC_H_
 #include "../LIB/STD_Types.h"
 
 #define SMAPLING_PERIOD_mS 	1
