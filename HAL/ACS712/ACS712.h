@@ -14,11 +14,11 @@
 		ACS712-30A => Sensor Sensitivity =  66 mv/A
 */
 
-#define ACS712_SENSITIVITY		66UL
+#define ACS712_SENSITIVITY		0.066
 
 /****************************INTERFACE******************************/
 
 void ACS712_voidInit(void);
-u16 ACS712_u16GetCurrentReading(void);
+f32 ACS712_u16GetCurrentReading(void);
 
 #endif

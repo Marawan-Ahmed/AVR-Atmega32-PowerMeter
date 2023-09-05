@@ -21,6 +21,6 @@
 /****************************INTERFACE******************************/
 
 void VSEN_voidInit(void);
-u16  VSEN_u16GetVoltageReading(void);
+f32  VSEN_u16GetVoltageReading(void);
 
 #endif
