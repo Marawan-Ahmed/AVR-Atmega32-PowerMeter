@@ -1,4 +1,3 @@
-#include "../../MCAL/DIO/DIO_CFG.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "LED_Private.h"
 #include "LED_CFG.h"

@@ -5,45 +5,78 @@
  *  Author: Ahmed
  */ 
 
-#include <avr/io.h>
-#include <avr/interrupt.h>
+//#include <avr/io.h>
+//#include <avr/interrupt.h>
 
 
 #include "../LIB/BIT_Math.h"
 #include "../LIB/STD_Types.h"
-//#include "../MCAL/TIM0/TIM0.c"
-#include "../MCAL/TIMER/TIMER_Prog.c"
-#include "../MCAL/ADC/ADC_Prog.c"
+#include <util/delay.h>
 #include "../MCAL/DIO/DIO_Prog.c"
-
-#include "../HAL/LED/LED_Prog.c"
+#include "../MCAL/ADC/ADC_Prog.c"
+#include "../MCAL/TIMER/TIMER_Prog.c"
+#include "../MCAL/EXTI/EXTI_Prog.c"
 #include "../HAL/LCD/LCD_Prog.c"
 #include "../HAL/VSEN/VSEN.c"
 #include "../HAL/ACS712/ACS712.c"
 #include "../APP/calculations.c"
-#include <util/delay.h>
+
 
 
 
 int main(void)
 {
-	LED_voidLEDSingleInit(DIO_PORTD, DIO_PIN7);
-
 	CALC_voidInit();
 	
 	LCD_voidInitDisplay();
 
-	f32 local_u32Current;// = ACS712_f32GetCurrentReading();
-	f32 local_f32Voltage; //= VSEN_f32GetVoltageReading();
-	f32 local_f32Power;
-	f32 local_f32Energy;
-	f64 local_f64Temp = 3.3;
-	// CALC_f64GetInstCurrent_mA CALC_f64GetInstVoltage_mV CALC_f64GetInstPower_mW CALC_f64GetEnergy_mJ
+	f32 local_f32Temp = 0;
+	
     while(true)
     {
-        local_f32Power = (u32)CALC_f64GetEnergy_mJ(); 
-		LCD_voidDisplayInt(local_f32Power);
-		_delay_ms(10);
-		LCD_voidClrDisplay();
+        
+		if (is_updated == true)
+		{
+			switch (Global_u8DisplayFlag)
+			{
+				case DISP_I:
+					local_f32Temp = CALC_f64GetInstCurrent_mA();
+					LCD_voidDisplayStr("I = ");
+					_delay_ms(1);
+					DISP_voidDisplayOnLCD(local_f32Temp);
+					_delay_ms(1);
+					LCD_voidDisplayStr(" A");
+					_delay_ms(1);
+					break;
+				case DISP_V:
+					local_f32Temp = CALC_f64GetInstVoltage_mV();
+					LCD_voidDisplayStr("V = ");
+					_delay_ms(1);
+					DISP_voidDisplayOnLCD(local_f32Temp);
+					_delay_ms(1);
+					LCD_voidDisplayStr(" V");
+					_delay_ms(1);
+					break;
+				case DISP_P:
+					local_f32Temp = CALC_f64GetInstPower_mW();
+					LCD_voidDisplayStr("P = ");
+					_delay_ms(1);
+					DISP_voidDisplayOnLCD(local_f32Temp);
+					_delay_ms(1);
+					LCD_voidDisplayStr(" W");
+					_delay_ms(1);
+					break;
+				case DISP_E:
+					local_f32Temp = CALC_f64GetEnergy_mJ();
+					LCD_voidDisplayStr("E = ");
+					_delay_ms(1);
+					DISP_voidDisplayOnLCD(local_f32Temp);
+					_delay_ms(1);
+					LCD_voidDisplayStr(" W.s");
+					_delay_ms(1);
+					break;
+			}
+			is_updated = false;
+		}
     }
 }
