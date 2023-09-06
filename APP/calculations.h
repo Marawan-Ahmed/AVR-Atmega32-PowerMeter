@@ -6,8 +6,21 @@
 #define SMAPLING_PERIOD_mS 	1
 #define SMAPLING_COUNT 		1000
 
+#define DECIMAL			2
 
+u8 Global_u8DisplayFlag = 0;
 
+bool is_updated = false;
+
+#define DISP_I	0
+#define DISP_V	1
+#define DISP_P	2
+#define DISP_E	3
+
+void ISR_INT0(void);
+void ISR_INT1(void);
+
+void DISP_voidDisplayOnLCD(f32 Copy_f32Result);
 
 void CALC_voidInit(void);
 

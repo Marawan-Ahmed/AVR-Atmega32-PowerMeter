@@ -1,7 +1,6 @@
 #ifndef TIMER_INTERFACE_H_
 #define TIMER_INTERFACE_H_
 
-
 // timer init (0 && 2)
 // normal mode/overflow mode (0 && 2)
 // CTC (0 && 2)

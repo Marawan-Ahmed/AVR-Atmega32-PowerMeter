@@ -1,5 +1,3 @@
-#include "../../LIB/Bit_Math.h"
-#include "../../MCAL/DIO/DIO_CFG.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "LCD_CFG.h"
 #include "LCD_Private.h"
